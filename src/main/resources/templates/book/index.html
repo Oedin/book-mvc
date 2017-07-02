@@ -5,7 +5,12 @@
     <title th:text = "${naslov}">Title</title>
 </head>
 <body>
-
+<p th:unless="${books} and ${books.size()}"> No Books</p>
     <h1 th:text = "${naslov}">List of my books:</h1>
+
+<a href="/bookstore/add">Add Book</a>
+<ul>
+    <li th:each="book : ${books}" th:text="${book}"></li>
+</ul>
 </body>
 </html>
