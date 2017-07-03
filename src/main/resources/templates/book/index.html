@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title th:text = "${naslov}">Title</title>
-</head>
+<head th:replace="fragments :: head"></head>
+
+
 <body>
+
+<h1 th:text = "${naslov}">List of my books:</h1>
+
+<nav th:replace = "fragments :: navigation"></nav>
+
 <p th:unless="${books} and ${books.size()}"> No Books</p>
-    <h1 th:text = "${naslov}">List of my books:</h1>
 
 <a href="/bookstore/add">Add Book</a>
 <ul>
     <li th:each="book : ${books}" th:text="${book}"></li>
 </ul>
+
 </body>
 </html>

@@ -5,7 +5,10 @@
     <title>Title</title>
 </head>
 <body>
+
 <h1 th:text="${naslov}"></h1>
+
+<nav th:replace = "fragments :: navigation"></nav>
 
 <form method="post">
     <input type="text" name="bookName"/>
