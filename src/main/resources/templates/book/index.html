@@ -3,18 +3,25 @@
 <head th:replace="fragments :: head"></head>
 
 
-<body>
-
-<h1 th:text = "${naslov}">List of my books:</h1>
+<body class = "container">
 
 <nav th:replace = "fragments :: navigation"></nav>
 
+<h2 th:text = "${naslov}">List of my books:</h2>
+
 <p th:unless="${books} and ${books.size()}"> No Books</p>
 
-<a href="/bookstore/add">Add Book</a>
-<ul>
-    <li th:each="book : ${books}" th:text="${book}"></li>
-</ul>
+<table class="table">
+    <tr>
+        <th>Book Name</th>
+    </tr>
+
+    <tr th:each="book : ${books}">
+        <td  th:text="${book}"></td>
+    </tr>
+
+</table>
+
 
 </body>
 </html>

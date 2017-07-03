@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"> </head>
 
-<h1 th:text="${naslov}"></h1>
+<body class="container">
 
 <nav th:replace = "fragments :: navigation"></nav>
 
-<form method="post">
-    <input type="text" name="bookName"/>
+<h2 th:text="${naslov}"></h2>
+
+<form method="post" style="max-width:600px">
+    <div class="form-group">
+        <label for="bookName-field">Name</label>
+        <input class="form-control" id="bookName-field" type="text" name="bookName"/>
+    </div>
     <input type="submit" value="Add"/>
 </form>
 </body>
