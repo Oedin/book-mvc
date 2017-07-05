@@ -10,8 +10,28 @@
 
 <form method="post" style="max-width:600px">
     <div class="form-group">
-        <label for="bookName-field">Name</label>
-        <input class="form-control" id="bookName-field" type="text" name="bookName"/>
+        <label for="bookTitle-field">Title</label>
+        <input class="form-control" id="bookTitle-field" type="text" name="title"/>
+    </div>
+    <div class="form-group">
+        <label for="authorName-field">Author</label>
+        <input class="form-control" id="authorName-field" type="text" name="author"/>
+    </div>
+    <div class="form-group">
+        <label for="bookGenre-field">Genre</label>
+        <input class="form-control" id="bookGenre-field" type="text" name="genre"/>
+    </div>
+    <div class="form-group">
+        <label for="bookFormat-field">Book Format</label>
+        <input class="form-control" id="bookFormat-field" type="text" name="bookFormat"/>
+    </div>
+    <!--<div class="form-group">-->
+        <!--<label for="datePublished-field">Published</label>-->
+        <!--<input class="form-control" id="datePublished-field" type="date" name="publishingDate"/>-->
+    <!--</div>-->
+    <div class="form-group">
+        <label for="price-field">Price</label>
+        <input class="form-control" id="price-field" type="number" pattern="(d{3})([.])(d{2})" name="price"/>
     </div>
     <input type="submit" value="Add"/>
 </form>

@@ -13,11 +13,19 @@
 
 <table class="table">
     <tr>
-        <th>Book Name</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Book Genre</th>
+        <th>Book Format</th>
+        <th>Price</th>
     </tr>
 
     <tr th:each="book : ${books}">
-        <td  th:text="${book}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.genre}"></td>
+        <td th:text="${book.bookFormat}"></td>
+        <td th:text="${book.price}"></td>
     </tr>
 
 </table>
