@@ -16,9 +16,16 @@ public class Book {
     private Date publishingDate;
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     private Double price;
+    private int bookId;
+    private static int nextId = 1;
 
+    public Book(){
+        bookId = nextId;
+        nextId++;
+    }
 
     public Book(String title, String author, String genre, String bookFormat, Date publishingDate, Double price) {
+        this();
         this.title = title;
         this.author = author;
         this.genre = genre;
@@ -53,6 +60,10 @@ public class Book {
         return price;
     }
 
+    public int getBookId() {
+        return bookId;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -75,5 +86,9 @@ public class Book {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 }

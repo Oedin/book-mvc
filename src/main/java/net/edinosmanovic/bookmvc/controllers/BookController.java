@@ -1,5 +1,6 @@
 package net.edinosmanovic.bookmvc.controllers;
 
+import net.edinosmanovic.bookmvc.models.BookData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,14 +23,14 @@ import java.util.Date;
 @RequestMapping(value = "bookstore")
 public class BookController {
 
-    static ArrayList<Book> books = new ArrayList<>();
+
 
 
     @RequestMapping(value ="")
 
     public String index(Model model){
 
-        model.addAttribute("books", books);
+        model.addAttribute("books", BookData.getAll());
         model.addAttribute("naslov", "Our Books: ");
         return "book/index";
     }
@@ -48,22 +49,24 @@ public class BookController {
                                      @RequestParam Date publishingDate,
                                      @RequestParam Double price){
         Book aBook = new Book(title, author, genre, bookFormat, publishingDate, price);
-        books.add(aBook);
+        BookData.add(aBook);
 
         return "redirect:";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveBookForm(Model model){
-        model.addAttribute("books", books);
+        model.addAttribute("books", BookData.getAll());
         model.addAttribute("naslov", "Remove Books");
-        return "books/remove";
+        return "book/remove";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveBookForm(){
+    public String processRemoveBookForm(@RequestParam int[] bookIds){
 
-
-        return "redirect";
+        for(int bookId : bookIds){
+            BookData.remove(bookId);
+        }
+        return "redirect:";
     }
 }

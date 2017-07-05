@@ -9,9 +9,9 @@
 
 <form method="post">
 
-    < th:each="book : ${books}" class="checkbox">
-        <input type="checkbox" name="book" th:value="${book.title}" th:id="${book.title}"/>
-        <label th:for="${book.name}" th:text="${book.name}"></label>
+    <div th:each="book : ${books}" class="checkbox">
+        <input type="checkbox" name="bookIds" th:value="${book.bookId}" th:id="${book.bookId}"/>
+        <label th:for="${book.bookId}" th:text="${book.title}"></label>
     <br />
     </div>
 
