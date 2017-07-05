@@ -1,5 +1,7 @@
 package net.edinosmanovic.bookmvc.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 import java.util.Date;
 
 /**
@@ -10,16 +12,18 @@ public class Book {
     private String author;
     private String genre;
     private String bookFormat;
-    //private Date publishingDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date publishingDate;
+    @NumberFormat(style = NumberFormat.Style.CURRENCY)
     private Double price;
 
 
-    public Book(String title, String author, String genre, String bookFormat, Double price) {
+    public Book(String title, String author, String genre, String bookFormat, Date publishingDate, Double price) {
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.bookFormat = bookFormat;
-        //this.publishingDate = publishingDate;
+        this.publishingDate = publishingDate;
         this.price = price;
 
     }
@@ -41,9 +45,9 @@ public class Book {
         return bookFormat;
     }
 
-//    public Date getPublishingDate() {
-//        return publishingDate;
-//    }
+    public Date getPublishingDate() {
+        return publishingDate;
+    }
 
     public Double getPrice() {
         return price;
@@ -65,9 +69,9 @@ public class Book {
         this.bookFormat = bookFormat;
     }
 
-//    public void setPublishingDate(Date publishingDate) {
-//        this.publishingDate = publishingDate;
-//    }
+    public void setPublishingDate(Date publishingDate) {
+        this.publishingDate = publishingDate;
+    }
 
     public void setPrice(Double price) {
         this.price = price;

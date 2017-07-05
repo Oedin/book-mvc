@@ -45,8 +45,9 @@ public class BookController {
                                      @RequestParam String author,
                                      @RequestParam String genre,
                                      @RequestParam String bookFormat,
+                                     @RequestParam Date publishingDate,
                                      @RequestParam Double price){
-        Book aBook = new Book(title, author, genre, bookFormat, price);
+        Book aBook = new Book(title, author, genre, bookFormat, publishingDate, price);
         books.add(aBook);
 
         return "redirect:";
@@ -63,6 +64,6 @@ public class BookController {
     public String processRemoveBookForm(){
 
 
-        return "rediret";
+        return "redirect";
     }
 }
