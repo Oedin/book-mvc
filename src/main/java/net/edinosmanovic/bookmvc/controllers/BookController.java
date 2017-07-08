@@ -3,11 +3,15 @@ package net.edinosmanovic.bookmvc.controllers;
 import net.edinosmanovic.bookmvc.models.BookData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.edinosmanovic.bookmvc.models.Book;
+
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,18 +42,18 @@ public class BookController {
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddBookForm(Model model){
         model.addAttribute("naslov", "Add Book");
+        model.addAttribute("book", new Book());
         return "book/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddBookForm(@RequestParam String title,
-                                     @RequestParam String author,
-                                     @RequestParam String genre,
-                                     @RequestParam String bookFormat,
-                                     @RequestParam Date publishingDate,
-                                     @RequestParam Double price){
-        Book aBook = new Book(title, author, genre, bookFormat, publishingDate, price);
-        BookData.add(aBook);
+    public String processAddBookForm(@ModelAttribute @Valid Book newBook,
+                                     Errors errors, Model model){
+        if(errors.hasErrors()){
+            model.addAttribute("naslov", "Add Book");
+            return "book/add";
+        }
+        BookData.add(newBook);
 
         return "redirect:";
     }
@@ -57,16 +61,18 @@ public class BookController {
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveBookForm(Model model){
         model.addAttribute("books", BookData.getAll());
-        model.addAttribute("naslov", "Remove Books");
+        model.addAttribute("naslov", "Remove Book");
         return "book/remove";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     public String processRemoveBookForm(@RequestParam int[] bookIds){
 
-        for(int bookId : bookIds){
+        for(int bookId : bookIds) {
             BookData.remove(bookId);
+
         }
-        return "redirect:";
+            return "redirect:";
+
     }
 }

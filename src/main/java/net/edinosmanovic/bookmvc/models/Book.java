@@ -2,20 +2,35 @@ package net.edinosmanovic.bookmvc.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
  * Created by eo on 7/4/17.
  */
 public class Book {
+
+    @NotNull
+    @Size(min=2, max=30, message = "Title may not be empty")
     private String title;
+    @NotNull
+    @Size(min=5, max=25, message = "Author may not be empty")
     private String author;
+    @NotNull
+    @Size(min=3, max=25)
     private String genre;
+    @NotNull
+    @Size(min=3, max=25)
     private String bookFormat;
+    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date publishingDate;
+    @NotNull
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     private Double price;
+
     private int bookId;
     private static int nextId = 1;
 
